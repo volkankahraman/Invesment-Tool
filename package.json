@@ -1,0 +1,17 @@
+{
+  "name": "investment-tool",
+  "version": "1.0.0",
+  "description": "Tool for me to trace my investment",
+  "main": "app.js",
+  "dependencies": {
+    "cron": "^1.7.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Volkan Kahraman",
+  "license": "ISC"
+}
