@@ -15,20 +15,20 @@ let transporter = nodeMailer.createTransport({
   port: 465,
   secure: true, //true for 465 port, false for other ports
   auth: {
-    user: process.env.EMAIL,
+    user: process.env.EMAIL, // Mail adresi
     pass: process.env.PASSWORD
   }
-  
+
 });
 
 
 var TronTry;
 
 function GetDateInFormat(date) {
-  return date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear() + " " + (date.getHours()<10?'0':'') + date.getHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes() + ":" + (date.getSeconds()<10?'0':'') + date.getSeconds();
+  return date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear() + " " + (date.getHours() < 10 ? '0' : '') + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + ":" + (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
 }
 
-function sendEmail(txtResponse){
+function sendEmail(txtResponse) {
   let mailOptions = {
     from: 'Invesment Tool <khrmnvolkan@zoho.com>', // sender address
     to: 'khrmnvolkan@gmail.com', // list of receivers
@@ -42,9 +42,11 @@ function sendEmail(txtResponse){
     } else {
       console.log("email gönderildi");
       console.log(info);
-      res.status(200).send({success: true});
+      res.status(200).send({
+        success: true
+      });
     }
-    
+
   });
 
 }
@@ -65,18 +67,18 @@ const requestOptions = {
 };
 rp(requestOptions).then(response => {
   TronTry = Object.values(response.data)[0].quote.TRY.price * 1256;
-  var txtResponse = "<h1>1256 Tron Tl Karşılığı :  "+TronTry.toFixed(2) + ' Tldir</h1>';
-  
-    
-  app.get('/',function(req,res){
-  //sendEmail(txtResponse);
+  var txtResponse = "<h1>1256 Tron Tl Karşılığı :  " + TronTry.toFixed(2) + ' Tldir</h1>';
+
+
+  app.get('/', function (req, res) {
+    sendEmail(txtResponse);
     res.writeHead(200, {
       "Content-Type": "text/html; charset=utf-8"
     });
     console.log(txtResponse);
     res.write(txtResponse, 'utf8');
     res.end();
-    });
+  });
 
 }).catch((err) => {
   console.log('API call error:', err.message);
