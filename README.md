@@ -1,3 +1,3 @@
-# Invesment-Tool
+# Investment-Tool
 Tool for me to trace my investment
 https://invesment-tool.herokuapp.com/
