@@ -66,12 +66,13 @@ const requestOptions = {
   gzip: true
 };
 rp(requestOptions).then(response => {
-  TronTry = Object.values(response.data)[0].quote.TRY.price * 1256;
-  var txtResponse = "<h1>1256 Tron Tl Karşılığı :  " + TronTry.toFixed(2) + ' Tldir</h1>';
+  let adet = 57.9; 
+  TronTry = Object.values(response.data)[0].quote.TRY.price * adet;
+  var txtResponse = "<h1>" + adet +"Tron Tl Karşılığı :  " + TronTry.toFixed(2) + ' Tldir</h1>';
 
 
   app.get('/', function (req, res) {
-    sendEmail(txtResponse);
+    //sendEmail(txtResponse);
     res.writeHead(200, {
       "Content-Type": "text/html; charset=utf-8"
     });
